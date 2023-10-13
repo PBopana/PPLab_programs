@@ -16,14 +16,13 @@ int main()
 	int a[n];
 	for(int i;i<n;i++){
 		a[i]=rand()%n;
-  }
+  	}
 	double s=omp_get_wtime();
 	#pragma omp parallel
 	for(int pass=0;pass<n;++pass)
 	{
 		int i;
-
-    //odd and even phases of the sorting algo
+    		//odd and even phases of the sorting algo
 		if(pass%2==0)
 		{
 			#pragma omp parallel for default(none) shared(a,n) private(i)
