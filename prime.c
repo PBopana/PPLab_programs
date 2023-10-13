@@ -22,19 +22,19 @@ int isPrime(int n)
 int main()
 {
   int x,n=50;
-int primes[100];
+  int primes[100];
 
-double_start=omp_get_wtime();
-#pragma omp parallel for
-for(int i=0;i<=n;i++)
-{
-  if(isPrime(i))
+  double_start=omp_get_wtime();
+  #pragma omp parallel for
+  for(int i=0;i<=n;i++)
   {
-    int t= omp_get_thread_num();
-    printf(" Process:%d, %d\n",t,i);
+    if(isPrime(i))
+    {
+      int t= omp_get_thread_num();
+      printf(" Process:%d, %d\n",t,i);
+    }
   }
-}
 
-double end=omp_get_wtime();
-printf("Time taken is %lf", end-start);
+  double end=omp_get_wtime();
+  printf("Time taken is %lf", end-start);
 }
